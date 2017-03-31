@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
+
+    <!--import other srping config-->
+    <import resource="classpath:spring/spring-aop.xml" />
+    <import resource="classpath:spring/spring-daemon.xml" />
+    <import resource="classpath:spring/spring-mysql.xml" />
+    <import resource="classpath:spring/spring-dao.xml" />
+    <!--<import resource="classpath:spring/spring-redis.xml" />-->
+    <import resource="classpath:spring/spring-service.xml" />
+
+    <!--load properties-->
+    <bean id="sourceProperty" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:config/*.properties" />
+    </bean>
+
+</beans>

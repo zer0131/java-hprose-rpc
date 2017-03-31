@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd " default-autowire="byName">
+
+    <bean id="hproseMethodInterceptor" class="com.ryan.hprose.aop.HproseMethodInterceptor" />
+    <aop:config>
+        <aop:pointcut id="hproseMethodInterceptorPointcut" expression="execution(* com.ryan.hprose.service.*.*.*(..))" />
+        <aop:advisor id="hproseMethodInterceptorAdvisor" advice-ref="hproseMethodInterceptor" pointcut-ref="hproseMethodInterceptorPointcut" />
+    </aop:config>
+    <!--<bean id="loggingAspect" class="com.ibante.hprose.aop.LoggingAspect" />
+    <aop:config>
+        <aop:pointcut id="loggingAspectPonit" expression="execution(* com.ibante.hprose.service.user.UserTokenServiceImpl.searchUserTokenByUserID(..))" />
+        <aop:aspect ref="loggingAspect">
+            <aop:before method="beforeMethod" pointcut-ref="loggingAspectPonit"/>
+        </aop:aspect>
+    </aop:config>-->
+</beans>

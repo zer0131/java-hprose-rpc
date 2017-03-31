@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+    <bean id="testTask" class="com.ryan.hprose.daemon.TestTask" />
+    <bean id="methodInvokingJobDetailFactoryBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="testTask" />
+        <property name="targetMethod" value="run" />
+        <!--是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程-->
+        <!--<property name="concurrent" value="false" />-->
+    </bean>
+
+    <!--调度触发器-->
+    <bean id="testTaskCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="methodInvokingJobDetailFactoryBean" />
+        <property name="cronExpression" value="0/5 * * * * ?" />
+    </bean>
+
+    <!--调度工厂 如果将lazy-init='false'那么容器启动就会执行调度程序, autowire设置为no表示不自动-->
+    <bean id="startQuartz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">
+        <property name="triggers">
+            <list>
+                <!--<ref bean="testTaskCronTrigger" />-->
+            </list>
+        </property>
+    </bean>
+
+</beans>
