@@ -43,6 +43,17 @@ public class ServiceProperty {
         }
     }
 
+    public static ServiceProperty getInstance() {
+        if (instance == null) {
+            synchronized (ServiceProperty.class) {
+                if (instance == null) {
+                    instance = new ServiceProperty();
+                }
+            }
+        }
+        return instance;
+    }
+
     public String getRedisHostname() {
         return redisHostname;
     }
