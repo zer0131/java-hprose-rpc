@@ -22,11 +22,11 @@
     <repositories>
         <repository>
             <id>releases</id>
-            <url>http://nexus.coll.ibante.com/nexus/content/repositories/releases</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/releases</url>
         </repository>
         <repository>
             <id>snapshots</id>
-            <url>http://nexus.coll.ibante.com/nexus/content/repositories/snapshots</url>
+            <url>http://maven.aliyun.com/nexus/content/repositories/snapshots</url>
         </repository>
     </repositories>
 
